@@ -5,14 +5,16 @@
   "homepage": "./",
   "scripts": {
     "dev": "yarn dev:ui & yarn dev:server",
-    "dev:server": "nodemon",
-    "dev:ui": "react-scripts start",
     "build": "yarn build:ui && yarn build:server",
+    "dev:ui": "react-scripts start",
+    "dev:server": "nodemon",
     "build:ui": "react-scripts build",
     "build:server": "mv tsconfig.json tmp.json && cp tsconfig-server.json tsconfig.json && tsc && rm tsconfig.json && mv tmp.json tsconfig.json",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint": "eslint src/**/*.ts{,x} --fix"
+    "lint": "yarn lint:ui & yarn lint:server",
+    "lint:ui": "eslint src/**/*.ts{,x} --fix",
+    "lint:server": "eslint server/**/*.ts --fix"
   },
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
