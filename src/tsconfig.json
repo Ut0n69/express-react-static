@@ -1,0 +1,9 @@
+{
+  "extends": "../tsconfig-base",
+  "compilerOptions": {
+    "rootDir": ".",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "jsx": "react-jsx"
+  }
+}

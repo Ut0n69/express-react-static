@@ -1,0 +1,13 @@
+{
+  "extends": "../tsconfig-base",
+  "compilerOptions": {
+    "rootDir": ".",
+    "lib": ["esnext"],
+    "target": "esnext",
+    "module": "commonjs"
+  },
+  "ts-node": {
+    "esm": true,
+    "experimentalSpecifierResolution": "node"
+  }
+}
