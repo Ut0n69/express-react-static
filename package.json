@@ -4,10 +4,10 @@
   "private": true,
   "homepage": "./",
   "scripts": {
-    "dev": "nodemon",
-    "build": "yarn build:ui && yarn build:server",
+    "dev": "yarn dev:ui & yarn dev:server",
+    "dev:server": "nodemon",
     "dev:ui": "react-scripts start",
-    "dev:server": "ts-node server/main.ts",
+    "build": "yarn build:ui && yarn build:server",
     "build:ui": "react-scripts build",
     "build:server": "mv tsconfig.json tmp.json && cp tsconfig-server.json tsconfig.json && tsc && rm tsconfig.json && mv tmp.json tsconfig.json",
     "test": "react-scripts test",
