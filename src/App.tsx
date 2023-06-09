@@ -1,23 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import "./App.css";
 
 function App() {
+  const [data, setData] = useState([]);
+
+  const onClick = async () => {
+    const response = await fetch("http://localhost:3035/api/books");
+    const data = await response.json();
+    setData(data);
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <main>
+        <button onClick={onClick}>click</button>
+        {data.map((d: { id: number; name: string }) => (
+          <div key={d.id}>{d.name}</div>
+        ))}
+      </main>
     </div>
   );
 }
