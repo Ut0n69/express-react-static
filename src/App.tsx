@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./App.css";
+import { Button } from "@chakra-ui/react";
 
 function App() {
   const [data, setData] = useState([]);
@@ -13,7 +14,9 @@ function App() {
   return (
     <div className="App">
       <main>
-        <button onClick={onClick}>click</button>
+        <Button colorScheme="blue" onClick={onClick}>
+          Button
+        </Button>
         {data.map((d: { id: number; name: string }) => (
           <div key={d.id}>{d.name}</div>
         ))}
