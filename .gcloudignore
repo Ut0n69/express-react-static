@@ -1,0 +1,16 @@
+.gcloudignore
+.git 
+.gitignore
+node_modules
+public
+server
+src
+.env.local
+.env.production
+.env.production.sample
+.node-version
+nodemon.json
+README.md
+tsconfig-base.json
+tsconfig-server.json
+tsconfig.json
