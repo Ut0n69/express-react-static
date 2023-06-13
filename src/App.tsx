@@ -1,25 +1,43 @@
-import { useState } from "react";
-import "./App.css";
-import { Button } from "@chakra-ui/react";
+import { useEffect } from "react";
+import {
+  Button,
+  CircularProgress,
+  useColorMode,
+  useColorModePreference,
+} from "@chakra-ui/react";
+import { useRefetch, useFetch } from "./customHooks";
+
+type Book = { id: number; name: string };
 
 function App() {
-  const [data, setData] = useState([]);
+  const { setColorMode } = useColorMode();
+  const systemColorMode = useColorModePreference();
+  useEffect(() => {
+    if (systemColorMode) {
+      setColorMode(systemColorMode);
+    }
+  }, [systemColorMode]);
 
-  const onClick = async () => {
-    const response = await fetch("http://localhost:3035/api/books");
-    const data = await response.json();
-    setData(data);
+  const { refetchToken, refetch } = useRefetch();
+  const { data: books, loading: getBooksLoading } = useFetch<Book[]>("/books", {
+    refetchToken,
+  });
+
+  const handleClick = async () => {
+    refetch();
   };
 
   return (
     <div className="App">
       <main>
-        <Button colorScheme="blue" onClick={onClick}>
+        <Button colorScheme="blue" onClick={handleClick}>
           Button
         </Button>
-        {data.map((d: { id: number; name: string }) => (
-          <div key={d.id}>{d.name}</div>
-        ))}
+        {getBooksLoading ? (
+          <CircularProgress />
+        ) : (
+          books?.map(({ id, name }: Book) => <div key={id}>{name}</div>)
+        )}
       </main>
     </div>
   );
